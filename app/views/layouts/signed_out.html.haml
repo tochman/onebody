@@ -28,7 +28,8 @@
       }, false);
   %body{ class: @body_class || 'skin-blue' }
     %header.header
-      = link_to setting(:name, :site), root_path, class: 'logo'
+      %p
+      -#= link_to setting(:name, :site), root_path, class: 'logo'
       %nav.navbar.navbar-static-top{role: "navigation"}
     %section{class: @section_class || 'content'}
       - content = yield

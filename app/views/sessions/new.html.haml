@@ -1,11 +1,12 @@
 - @title = t('session.form.header')
 - @hide_title = true
-- @body_class = 'bg-black centered-header'
+- @body_class = 'bg-lightgray centered-header'
 - @section_class = 'content-centered'
 
 #login-box.form-box
   = flash_messages
-  .header= t('session.form.header')
+  .header.bg-white
+    = image_tag('logo-small.png')
 
   = form_tag session_path do
     = hidden_field_tag :from, params[:from]
@@ -18,10 +19,11 @@
       .form-group
         = check_box_tag :remember_me, true, params[:remember_me]
         = label_tag :remember_me, t('session.form.remember_me')
-    .footer
       %button.btn.bg-olive.btn-block{type: 'submit'}
         = icon 'fa fa-sign-in'
         = t('session.sign_in_button')
+    .footer
       %p
-        = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info'
-        = link_to t('session.forgot_password_button'), new_account_path(forgot: true), class: 'btn btn-warning pull-right'
+        = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info btn-block'
+      %p
+        = link_to t('session.forgot_password_button'), new_account_path(forgot: true), class: 'btn btn-warning  btn-block pull-right'
