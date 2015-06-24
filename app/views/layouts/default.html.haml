@@ -30,7 +30,8 @@
   %body.skin-blue{ data: { 'datepicker-format' => datepicker_format } }
     / header logo: style can be found in header.less
     %header.header
-      = link_to setting(:name, :site), root_path, class: 'logo'
+      -#= link_to setting(:name, :site), root_path, class: 'logo'
+      = link_to image_tag('logo-small-bw.png'), root_path, class: 'logo'
       / Header Navbar: style can be found in header.less
       %nav.navbar.navbar-static-top{ role: "navigation" }
         / Sidebar toggle button
@@ -41,8 +42,8 @@
           %span.icon-bar
         .navbar-right
           = render 'layouts/navbar_right'
-        %h3.site-name
-          = link_to setting(:name, :community), root_path
+        -#%h3.site-name
+          = link_to setting(:name, :site), root_path
     .wrapper.row-offcanvas.row-offcanvas-left
       / Left side column. contains the logo and sidebar
       %aside.left-side.sidebar-offcanvas

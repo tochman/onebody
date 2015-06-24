@@ -449,6 +449,7 @@ en:
     other: "%{count} people"
 
   footer:
+    about: "Our Story"
     help: "Help using this site"
     privacy_policy: "Privacy Policy"
     powered_by: "Powered by CHURCH.IO OneBody"
