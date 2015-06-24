@@ -16,19 +16,23 @@ class SessionsController < ApplicationController
 
   # sign in
   def create
-    @person = Person.authenticate(params[:email], params[:password])
-    if @person && !@person.can_sign_in?
-      redirect_to page_for_public_path('system/unauthorized')
-    elsif @person
-      if params[:for] == 'checkin'
-        login_success_for_checkin
-      else
-        login_success
-      end
-    elsif @person == false
-      login_auth_fail
+    if !params[:fellforit].blank?
+      redirect_to new_session_path, notice: 'Form not submitted. Are you human?'
     else
-      login_not_found
+      @person = Person.authenticate(params[:email], params[:password])
+      if @person && !@person.can_sign_in?
+        redirect_to page_for_public_path('system/unauthorized')
+      elsif @person
+        if params[:for] == 'checkin'
+          login_success_for_checkin
+        else
+          login_success
+        end
+      elsif @person == false
+        login_auth_fail
+      else
+        login_not_found
+      end
     end
   end
 
@@ -126,8 +130,8 @@ class SessionsController < ApplicationController
 
   def sticky_session!(length = 30.days)
     request.cookie_jar['_session_id'] = {
-      value: request.cookie_jar['_session_id'],
-      expires: length.from_now
+        value: request.cookie_jar['_session_id'],
+        expires: length.from_now
     }
   end
 end

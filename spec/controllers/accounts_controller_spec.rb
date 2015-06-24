@@ -110,11 +110,26 @@ describe AccountsController, type: :controller do
         context 'spam sign up (honeypot a_phone_number field has text)' do
           before do
             @count_was = Person.count
-            post :create, {signup: {email: 'rick@example.com', first_name: 'Rick', last_name: 'Smith', birthday: '4/1/1980', a_phone_number: '1234567890'}}
+            post :create, {fellforit: '', signup: {email: 'rick@example.com', first_name: 'Rick', last_name: 'Smith', birthday: '4/1/1980', a_phone_number: '1234567890'}}
           end
 
           it 'should render new template' do
             expect(response).to render_template(:new)
+          end
+
+          it 'should not create a new person' do
+            expect(Person.count).to eq(@count_was)
+          end
+        end
+
+        context 'bot sign up' do
+          before do
+            @count_was = Person.count
+            post :create, {fellforit: 'whatever', signup: {email: 'rick@example.com', first_name: 'Rick', last_name: 'Smith', birthday: '4/1/1980', a_phone_number: '1234567890'}}
+          end
+
+          it 'should redirect to form' do
+            expect(response).to redirect_to(new_account_path)
           end
 
           it 'should not create a new person' do

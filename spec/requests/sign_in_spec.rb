@@ -28,6 +28,16 @@ describe 'SignIn', type: :request do
     end
   end
 
+  context 'given sign in by bot' do
+    before do
+      post '/session', email: @user.email, password: 'secret', fellforit: 'whatever'
+    end
+
+    it 'should redirect to root' do
+      expect(response).to redirect_to(new_session_path)
+    end
+  end
+
   context 'given proper email and password' do
     before do
       post '/session', email: @user.email, password: 'secret'

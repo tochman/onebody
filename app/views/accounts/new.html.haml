@@ -7,6 +7,8 @@
     = error_messages_for(form)
     %p
       .form-group
+        = text_field :fellforit, params[:fellforit], id: 'f-fellforit', class: 'form-control', placeholder: 'How can we help you?'
+      .form-group
         = form.label :email
         = form.text_field :email, class: 'form-control'
       .form-group

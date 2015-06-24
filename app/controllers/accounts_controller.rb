@@ -28,6 +28,9 @@ class AccountsController < ApplicationController
   end
 
   def create
+    if params[:fellforit]
+      redirect_to new_account_path, notice: 'You are a bot!' and return unless params[:fellforit][0].blank?
+    end
     if params[:signup]
       @signup = Signup.new(params[:signup])
       if @signup.save
