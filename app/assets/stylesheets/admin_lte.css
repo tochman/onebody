@@ -490,7 +490,11 @@ body > .header .logo .icon {
   body > .header {
     position: relative;
   }
-  body > .header .logo,
+  body > .header .logo {
+      height: 50% !important;
+      width: auto !important;
+  }
+    body > .header .logo,
   body > .header .navbar {
     width: 100%;
     float: none;
