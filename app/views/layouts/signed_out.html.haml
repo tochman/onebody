@@ -30,7 +30,7 @@
     %header.header
       %p
         = link_to image_tag('logo-small-bw.png'), root_path, class: 'logo' unless @hide_title
-      %nav.navbar.navbar-static-top{role: "navigation"}
+      %nav.navbar.navbar-static-top.hidden-xs{role: "navigation"}
     %section{class: @section_class || 'content'}
       - content = yield
       - if content =~ /^\s*<div class=.row.>/m

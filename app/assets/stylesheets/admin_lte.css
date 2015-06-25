@@ -490,8 +490,8 @@ body > .header .logo .icon {
   body > .header {
     position: relative;
   }
-  body > .header .logo {
-      height: 50% !important;
+  body > .header .logo img {
+      height: 70% !important;
       width: auto !important;
   }
     body > .header .logo,
