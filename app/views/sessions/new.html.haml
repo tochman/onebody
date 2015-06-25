@@ -24,6 +24,14 @@
       %button.btn.bg-olive.btn-block{type: 'submit'}
         = icon 'fa fa-sign-in'
         = t('session.sign_in_button')
+      - if has_social_logins
+        - if support_facebook_login
+          .form-group
+            %p.pull-left You can use your Facebook credentials:
+            %a.btn.btn-social-icon.btn-facebook.pull-right{href: "/auth/facebook"}
+              %i.fa.fa-facebook
+            %hr
+            %hr
     .footer
       %p
         = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info btn-block'

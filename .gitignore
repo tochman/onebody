@@ -29,3 +29,5 @@ script/package
 Vagrantfile.local
 .gem
 coverage
+.idea/*
+.idea/
