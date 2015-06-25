@@ -3,6 +3,8 @@ class AccountsController < ApplicationController
 
   load_and_authorize_parent :person, permit: :edit, only: %w(edit update)
 
+  layout 'signed_out'
+
   def show
     if params[:person_id]
       redirect_to person_account_path(params[:person_id])
