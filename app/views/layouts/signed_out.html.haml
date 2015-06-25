@@ -29,7 +29,7 @@
   %body{ class: @body_class || 'skin-blue' }
     %header.header
       %p
-      -#= link_to setting(:name, :site), root_path, class: 'logo'
+        = link_to image_tag('logo-small-bw.png'), root_path, class: 'logo' unless @hide_title
       %nav.navbar.navbar-static-top{role: "navigation"}
     %section{class: @section_class || 'content'}
       - content = yield
