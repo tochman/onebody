@@ -1,8 +1,7 @@
 - @title = t('session.form.header')
 - @hide_title = true
-- @body_class = 'bg-lightgray centered-header'
+- @body_class = 'bg-social centered-header'
 - @section_class = 'content-centered'
-
 #login-box.form-box
   = flash_messages
   .header.bg-white
@@ -32,7 +31,7 @@
               %i.fa.fa-facebook
             %hr
             %hr
-    .footer
+    .footer.bg-white
       %p
         = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info btn-block'
       %p
