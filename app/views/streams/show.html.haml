@@ -5,9 +5,9 @@
 - content_for :sub_title, t('stream.sub_title')
 
 .row.stream
-  .col-sm-6
+  .col-sm-7
     = timeline(@stream_items)
-  .col-sm-6
+  .col-sm-5
     - if @logged_in.pending_friendship_requests.any?
       .friends-alert
         %p
@@ -52,7 +52,19 @@
                         = link_to group.name, new_group_message_path(group)
         .box-footer
           %em= t('stream.share.sharing_with_html', count: @logged_in.sharing_with_people.count, url: stream_people_path)
-
+    .box
+      .box-header
+        %h5.box-title Sponsors
+      .box-body
+        .row
+          .col-lg-4.pull-right
+            = link_to image_tag('ad-placeholder.jpg', width: '90%'), 'http://lightmedianetwork.com', target: '_blank'
+          .col-lg-4.pull-right
+            = link_to image_tag('ad-placeholder.jpg', width: '90%'), 'http://lightmedianetwork.com', target: '_blank'
+          .col-lg-4.pull-right
+            = link_to image_tag('ad-placeholder.jpg', width: '90%'), 'http://lightmedianetwork.com', target: '_blank'
+      .box-footer
+        %em Contact us for sponsorship opportunities
     - if can_post_news?
       .box.box-warning
         .box-header
