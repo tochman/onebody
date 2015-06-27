@@ -1,38 +1,57 @@
-- @title = t('session.form.header')
+-# @title = t('session.form.header')
 - @hide_title = true
 - @body_class = 'bg-social centered-header'
 - @section_class = 'content-centered'
-#login-box.form-box
-  = flash_messages
-  .header.bg-white
-    = image_tag('ps-logo-small.png')
-
-  = form_tag session_path do
-    = hidden_field_tag :from, params[:from]
-    = hidden_field_tag :for, params[:for]
-    .body.bg-gray
-      .form-group
-        = text_field_tag :fellforit, params[:fellforit], id: 'f-fellforit', class: 'form-control', placeholder: 'How can we help you?'
-      .form-group
-        = text_field_tag :email, params[:email], placeholder: t('session.form.placeholder.email'), class: 'form-control', autofocus: !@focus_password
-      .form-group
-        = password_field_tag :password, '', placeholder: t('session.form.placeholder.password'), class: 'form-control', autofocus: @focus_password
-      .form-group
-        = check_box_tag :remember_me, true, params[:remember_me]
-        = label_tag :remember_me, t('session.form.remember_me')
-      %button.btn.bg-olive.btn-block{type: 'submit'}
-        = icon 'fa fa-sign-in'
-        = t('session.sign_in_button')
-      - if has_social_logins
-        - if support_facebook_login
-          .form-group
-            %p.pull-left You can use your Facebook credentials:
-            %a.btn.btn-social-icon.btn-facebook.pull-right{href: "/auth/facebook"}
-              %i.fa.fa-facebook
-            %hr
-            %hr
-    .footer.bg-white
-      %p
-        = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info btn-block'
-      %p
-        = link_to t('session.forgot_password_button'), new_account_path(forgot: true), class: 'btn btn-warning  btn-block pull-right'
+.container
+  .row
+    .col-lg-7
+      .text-box
+        .header.bg-white
+          = image_tag('ps-logo-small.png', width: '300px')
+        .body.bg-gray
+          %h4 A International Christian Social Network.
+          %h2 FREE to register and FREE to use
+          %p PrayerSpace is open for everybody and promotes personal growth through sharing individual experiences and stories.
+          %strong Register your account and:
+          %ul
+            %li connect with people of faith
+            %li share your experiences
+            %li organize prayer groups and events
+            %li support your favorite causes
+        .footer.bg-white
+          %em 
+    .col-lg-5
+      #login-box.form-box
+        = flash_messages
+        .header.bg-white
+          %h1.hidden-xs Sign in and connect
+          = image_tag('ps-logo-small.png', width: '300px', class: 'visible-xs-block')
+        = form_tag session_path do
+          = hidden_field_tag :from, params[:from]
+          = hidden_field_tag :for, params[:for]
+          .body.bg-gray
+            .form-group
+              = text_field_tag :fellforit, params[:fellforit], id: 'f-fellforit', class: 'form-control', placeholder: 'How can we help you?'
+            .form-group
+              = text_field_tag :email, params[:email], placeholder: t('session.form.placeholder.email'), class: 'form-control', autofocus: !@focus_password
+            .form-group
+              = password_field_tag :password, '', placeholder: t('session.form.placeholder.password'), class: 'form-control', autofocus: @focus_password
+            .form-group
+              = check_box_tag :remember_me, true, params[:remember_me]
+              = label_tag :remember_me, t('session.form.remember_me')
+            %button.btn.bg-olive.btn-block{type: 'submit'}
+              = icon 'fa fa-sign-in'
+              = t('session.sign_in_button')
+            - if has_social_logins
+              - if support_facebook_login
+                .form-group
+                  %p.pull-left You can use your Facebook credentials:
+                  %a.btn.btn-social-icon.btn-facebook.pull-right{href: "/auth/facebook"}
+                    %i.fa.fa-facebook
+                  %hr
+                  %hr
+          .footer.bg-white
+            %p
+              = link_to t('session.sign_up_button'), new_account_path, class: 'btn btn-info btn-block'
+            %p
+              = link_to t('session.forgot_password_button'), new_account_path(forgot: true), class: 'btn btn-warning  btn-block pull-right'
