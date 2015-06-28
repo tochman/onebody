@@ -41,32 +41,33 @@ class Signup
     save
   end
 
-  def self.save_with_omniauth(auth)
+  def save_with_omniauth(auth)
     first_name = auth['info']['first_name']
     last_name = auth['info']['last_name']
 
     family ||= Family.create(
-      name:      "#{first_name} #{last_name}",
-      last_name: last_name
+        name: "#{first_name} #{last_name}",
+        last_name: last_name
     )
 
     return false unless family.errors.empty?
 
     person ||= Person.create(
-      provider:    auth['provider'],
-      uid:         auth['uid'],
-      first_name:  first_name,
-      last_name:   last_name,
-      email:       auth['info']['email'],
-      family:      family,
-      can_sign_in: true
+        provider: auth['provider'],
+        uid: auth['uid'],
+        first_name: first_name,
+        last_name: last_name,
+        email: auth['info']['email'],
+        family: family,
+        can_sign_in: true
     )
 
     case auth['provider']
-    when "facebook"
-      person.facebook_url = auth['info']['urls'][:Facebook]
+      when 'facebook'
+        person.facebook_url = auth['info']['urls'][:Facebook]
     end
-
+    person.update_attributes(can_sign_in: true, full_access: true, visible_to_everyone: true) unless sign_up_approval_required?
+    Verification.create!(email: person.email)
     return false unless person.errors.empty?
     person
   end
@@ -115,24 +116,24 @@ class Signup
 
   def create_family
     @family ||= Family.create(
-      name: "#{first_name} #{last_name}",
-      last_name: last_name
+        name: "#{first_name} #{last_name}",
+        last_name: last_name
     )
     @family.errors.empty?
   end
 
   def create_person
     @person ||= @family.people.create(
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      birthday: birthday,
-      gender: gender,
-      mobile_phone: mobile_phone,
-      can_sign_in: full_access?,
-      full_access: full_access?,
-      visible_to_everyone: full_access?,
-      visible_on_printed_directory: full_access?
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        birthday: birthday,
+        gender: gender,
+        mobile_phone: mobile_phone,
+        can_sign_in: full_access?,
+        full_access: full_access?,
+        visible_to_everyone: full_access?,
+        visible_on_printed_directory: full_access?
     )
     @person.errors.empty?
   end
