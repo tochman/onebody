@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423143835) do
+ActiveRecord::Schema.define(version: 20150705060339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -519,6 +519,17 @@ ActiveRecord::Schema.define(version: 20150423143835) do
     t.integer  "site_id"
   end
 
+  create_table "prayers", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "prayer_request_id"
+    t.text     "comment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "prayers", ["person_id"], name: "index_prayers_on_person_id", using: :btree
+  add_index "prayers", ["prayer_request_id"], name: "index_prayers_on_prayer_request_id", using: :btree
+
   create_table "processed_messages", force: :cascade do |t|
     t.string   "header_message_id"
     t.datetime "created_at"
@@ -762,4 +773,6 @@ ActiveRecord::Schema.define(version: 20150423143835) do
     t.integer  "site_id"
   end
 
+  add_foreign_key "prayers", "people"
+  add_foreign_key "prayers", "prayer_requests"
 end
