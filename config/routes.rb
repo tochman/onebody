@@ -6,19 +6,19 @@ OneBody::Application.routes.draw do
     member do
       get :verify_code
       post :verify_code
-      get  :select
+      get :select
       post :select
     end
   end
 
   resources :people do
     collection do
-      get  :schema
-      get  :import
+      get :schema
+      get :import
       post :import
       post :hashify
       post :batch
-      put  :import
+      put :import
     end
     member do
       get :favs
@@ -37,9 +37,9 @@ OneBody::Application.routes.draw do
     end
     resource :account do
       member do
-        get  :verify_code
+        get :verify_code
         post :verify_code
-        get  :select
+        get :select
         post :select
       end
     end
@@ -51,7 +51,7 @@ OneBody::Application.routes.draw do
 
   resources :families do
     collection do
-      get  :schema
+      get :schema
       post :hashify
       post :batch
       post :select
@@ -68,12 +68,12 @@ OneBody::Application.routes.draw do
 
   resources :groups do
     collection do
-      get  :batch
+      get :batch
       post :batch
     end
     resources :memberships do
       collection do
-        post   :batch
+        post :batch
         delete :batch
       end
       resource :privacy
@@ -102,7 +102,7 @@ OneBody::Application.routes.draw do
 
   resources :memberships do
     collection do
-      get  :batch
+      get :batch
       post :batch
     end
   end
@@ -135,7 +135,14 @@ OneBody::Application.routes.draw do
   resources :tags, only: :show
 
   resources :pictures, :prayer_signups, :authentications, :shares,
-            :comments, :prayer_requests, :generated_files
+            :comments, :generated_files
+
+  resources :prayer_requests do
+    member do
+      post :create_prayer
+      get :list_prayers
+    end
+  end
 
   resources :verses do
     get 'search', on: :collection
@@ -232,8 +239,8 @@ OneBody::Application.routes.draw do
   end
   resources :custom_reports
 
-  post '/pusher/auth_printer'    => 'pusher#auth_printer'
-  get '/auth/facebook/callback'  => 'sessions#create_from_external_provider'
+  post '/pusher/auth_printer' => 'pusher#auth_printer'
+  get '/auth/facebook/callback' => 'sessions#create_from_external_provider'
   post '/auth/facebook/callback' => 'sessions#create_from_external_provider'
-  get '/auth/:provider/setup'    => 'sessions#setup_omniauth'
+  get '/auth/:provider/setup' => 'sessions#setup_omniauth'
 end

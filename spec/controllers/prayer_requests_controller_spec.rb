@@ -7,6 +7,7 @@ describe PrayerRequestsController, type: :controller do
     @group = FactoryGirl.create(:group)
     @group.memberships.create(person_id: @person.id)
     @prayer_request = FactoryGirl.create(:prayer_request, group: @group, person: @person)
+    #@prayer = FactoryGirl.create(:prayer, person: @person, prayer_request: @prayer_request, comment: 'I pray for you!')
   end
 
   it "should list all prayer requests" do
@@ -41,6 +42,15 @@ describe PrayerRequestsController, type: :controller do
     expect(new_req.request).to eq("test req")
     expect(new_req.answer).to eq("test answer")
     expect(new_req.answered_at.strftime("%m/%d/%Y")).to eq("01/01/2010")
+    expect(ActionMailer::Base.deliveries.last).to be_nil
+  end
+
+  it 'should create a prayer for prayer_request' do
+binding.pry
+    post :create_prayer, {id: @prayer_request.id}, {prayer:{ person: @person, request: @prayer_request, comment: 'test' }}
+    new_prayer = Prayer.last
+
+    binding.pry
     expect(ActionMailer::Base.deliveries.last).to be_nil
   end
 

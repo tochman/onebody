@@ -36,6 +36,11 @@ class PrayerRequestsController < ApplicationController
   def edit
   end
 
+  def create_prayer
+    binding.pry
+    @prayer_request.prayer.create!(prayer_params)
+  end
+
   def update
     if @prayer_request.update_attributes(prayer_request_params)
       if params[:send_email]
@@ -56,5 +61,9 @@ class PrayerRequestsController < ApplicationController
 
   def prayer_request_params
     params.require(:prayer_request).permit(:person_id, :request, :answer, :answered_at)
+  end
+
+  def prayer_params
+    params.require(:prayer).permit(:person_id, :prayer_request_id, :comment)
   end
 end
