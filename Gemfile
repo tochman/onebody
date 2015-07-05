@@ -94,6 +94,7 @@ group :development, :test do
   gem 'pry', '~> 0.10.1'
   gem 'pry-remote', '~> 0.1.8'
   gem 'pry-rails', '~> 0.3.4'
+  gem 'byebug'
   gem 'rspec-rails', '~> 3.2.1'
   gem 'spring', '~> 1.3.6'
   gem 'spring-commands-rspec', '~> 1.0.4'

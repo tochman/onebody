@@ -46,6 +46,7 @@ class Person < ActiveRecord::Base
   belongs_to :site
   belongs_to :last_seen_stream_item, class_name: 'StreamItem'
   belongs_to :last_seen_group, class_name: 'Group'
+  has_many :prayers
 
   scope_by_site_id
 

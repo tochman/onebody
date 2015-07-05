@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Prayer, type: :model do
   let(:group) { FactoryGirl.create(:group, name: 'Morgan Small Group')}
-  let(:person) {FactoryGirl.create(:person) }
+  let(:person) { FactoryGirl.create(:person) }
   let(:req) { FactoryGirl.create(:prayer_request, group: group, person: person,
                                  request: 'the request', answered_at: nil, answer: nil) }
   let(:memberships) { group.memberships.create!(person: person) }
@@ -32,5 +32,14 @@ RSpec.describe Prayer, type: :model do
     it { is_expected.to validate_presence_of :person_id }
     it { is_expected.to validate_presence_of :prayer_request_id }
   end
+
+  describe 'add prayer to request' do
+    it 'should create instance of Prayer' do
+      binding.pry
+      expect{req.prayers.create!(person: person, comment: 'prayed for you')}.to change(Prayer, :count).by 1
+    end
+  end
+
+
 
 end

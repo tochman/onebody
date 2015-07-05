@@ -10,6 +10,10 @@ describe Group do
     FactoryGirl.create(:group, category: 'bar', hidden: true)
   end
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:prayers).through(:prayer_requests) }
+  end
+
   describe '#update_memberships' do
     context 'given user has a single class code' do
       before do

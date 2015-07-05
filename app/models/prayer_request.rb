@@ -7,6 +7,8 @@ class PrayerRequest < ActiveRecord::Base
   belongs_to :person
   belongs_to :site
 
+  has_many :prayers
+
   scope_by_site_id
 
   validates_presence_of :request, :group_id, :person_id

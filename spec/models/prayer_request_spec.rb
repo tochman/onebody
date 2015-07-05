@@ -2,6 +2,10 @@ require_relative '../rails_helper'
 
 describe PrayerRequest do
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:prayers) }
+  end
+
   before do
     @group = FactoryGirl.create(:group, name: 'Morgan Small Group')
     @person = FactoryGirl.create(:person)

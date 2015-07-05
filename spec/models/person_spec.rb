@@ -2,6 +2,10 @@ require_relative '../rails_helper'
 
 describe Person do
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:prayers) }
+  end
+
   describe 'Formats' do
 
     BAD_EMAIL_ADDRESSES  = ['bad address@example.com', 'bad~address@example.com', 'baddaddress@example.123', 'looksinnocent@example.com\n<script>alert("pwned")</script>']

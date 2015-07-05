@@ -22,6 +22,7 @@ class Group < ActiveRecord::Base
   belongs_to :creator, class_name: 'Person', foreign_key: 'creator_id'
   belongs_to :leader, class_name: 'Person', foreign_key: 'leader_id'
   belongs_to :parents_of_group, class_name: 'Group', foreign_key: 'parents_of'
+  has_many :prayers, through: :prayer_requests
   belongs_to :site
 
   scope :active,     -> { where(hidden: false) }
