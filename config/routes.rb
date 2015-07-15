@@ -1,5 +1,11 @@
 OneBody::Application.routes.draw do
 
+  get 'prayers/new'
+
+  get 'prayers/create'
+
+  get 'prayers/show'
+
   root to: redirect('/stream')
 
   resource :account do
@@ -138,10 +144,7 @@ OneBody::Application.routes.draw do
             :comments, :generated_files
 
   resources :prayer_requests do
-    member do
-      post :create_prayer
-      get :list_prayers
-    end
+    resources :prayers
   end
 
   resources :verses do
