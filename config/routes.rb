@@ -144,7 +144,7 @@ OneBody::Application.routes.draw do
             :comments, :generated_files
 
   resources :prayer_requests do
-    resources :prayers
+    post :prayer, :action => "create_prayer", :controller => "prayer_requests"
   end
 
   resources :verses do

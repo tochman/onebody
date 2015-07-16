@@ -3,7 +3,8 @@
 %p= t('prayer_requests.by', person: link_to(@prayer_request.person.try(:name), @prayer_request.person)).html_safe
 
 %p= @prayer_request.request
-
+- if @prayer_request.prayers.any?
+  %small #{@prayer_request.prayers.count} members have prayed for this request. Add your prayer below.
 - if @prayer_request.answer.present?
   %h3= t('prayer_requests.answer.heading')
   - if @prayer_request.answered_at
@@ -18,3 +19,18 @@
     = link_to [@prayer_request.group, @prayer_request], method: :delete, data: { confirm: t('are_you_sure') }, class: 'btn bg-gray text-red' do
       = icon 'fa fa-trash-o'
       = t('prayer_requests.delete.button')
+
+.page-controls
+  - if @prayer_request.prayers.any?
+    - @prayer_request.prayers.each do |prayer|
+      = prayer.comment
+      %small
+        =prayer.person.name
+      %hr
+  = form_tag prayer_request_prayer_path(@prayer_request) do
+    .form-group
+      %h4 Your Prayer
+      .form-group
+        = text_area_tag :comment, nil, rows: 4, class: 'form-control'
+      .form-group
+        = submit_tag 'Send', class: 'btn btn-default'

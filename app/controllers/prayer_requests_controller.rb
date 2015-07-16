@@ -37,8 +37,13 @@ class PrayerRequestsController < ApplicationController
   end
 
   def create_prayer
-    binding.pry
-    @prayer_request.prayer.create!(prayer_params)
+    @prayer_request = PrayerRequest.find(params[:prayer_request_id])
+    if @prayer_request.prayers.create!(comment: params[:comment], person: @logged_in)
+      flash[:notice] = 'Added your prayer! Blessings'
+      redirect_to(:back)
+    else
+      flash[:alert] = 'Something wrong!'
+    end
   end
 
   def update
@@ -63,7 +68,4 @@ class PrayerRequestsController < ApplicationController
     params.require(:prayer_request).permit(:person_id, :request, :answer, :answered_at)
   end
 
-  def prayer_params
-    params.require(:prayer).permit(:person_id, :prayer_request_id, :comment)
-  end
 end
