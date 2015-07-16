@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/tochman/onebody.png?label=ready&title=Ready)](https://waffle.io/tochman/onebody)
 ![screnshots](https://farm8.staticflickr.com/7508/15498980049_3527e0817e_b.jpg)
 
 # OneBody
