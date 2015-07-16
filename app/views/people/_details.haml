@@ -66,3 +66,14 @@
             = link_to(@person.facebook_url, target: '_blank') do
               = icon 'fa fa-facebook'
               = simple_url(@person.facebook_url, www: false)
+
+  - if @person.friendships.any?
+    %tr
+      %td
+        Friendships
+        -if @person.friendships.count > 10
+          %p= link_to 'View all', person_friends_path(@person), class: 'btn btn-default'
+      %td
+        - @person.friendships.first(10).each do |friendship|
+          = link_to avatar_tag(friendship.friend, title: friendship.friend.name), person_path(friendship.friend)
+
