@@ -1,0 +1,7 @@
+- @title = "Response to #{link_to 'Prayer request', @prayer.prayer_request } by #{link_to(@prayer.person.try(:name), @prayer.person)}".html_safe
+
+%p= "Published in #{link_to @prayer.prayer_request.group.name, group_path(@prayer.prayer_request.group)}".html_safe
+%strong= "by #{@prayer.person.name}"
+%p= @prayer.comment
+%br
+  %small= "Created #{@prayer.created_at.to_s(:date)}"

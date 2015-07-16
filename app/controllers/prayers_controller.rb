@@ -12,5 +12,6 @@ class PrayersController < ApplicationController
   end
 
   def show
+    @prayer = Prayer.find(params[:id])
   end
 end

@@ -18,7 +18,8 @@ en:
       picture_in_group:
         one: "%{who} shared a picture in the group %{group}"
         other: "%{who} shared some pictures in the group %{group}"
-      prayer_request: "%{who} requested prayer in the group %{group}"
+      prayer_request: "%{who} requested prayer in %{group}"
+      prayer: "%{who} responded to a prayer request in %{group}"
       site: "%{site}"
       verse: "%{who} shared %{title}"
 

@@ -47,6 +47,7 @@ class StreamItem < ActiveRecord::Base
       types << 'Note'     if Setting.get(:features, :notes)
       types << 'Person'
       types << 'PrayerRequest'
+      types << 'Prayer'
       types << 'Site'
       types << 'StreamItemGroup'
     end
