@@ -43,7 +43,7 @@ module OneBody
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
 
-    config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.assets.paths << "#{Rails}/public/assets/fonts"
 
     # Additional precompiled assets
     config.assets.precompile += %w(
