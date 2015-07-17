@@ -31,6 +31,13 @@
     .form-group
       %h4 Your Prayer
       .form-group
-        = text_area_tag :comment, nil, rows: 4, class: 'form-control'
+        = text_area_tag :comment, nil, rows: 4, class: 'form-control editor-control'
       .form-group
         = submit_tag 'Send', class: 'btn btn-default'
+
+
+- content_for :css do
+  = stylesheet_link_tag 'editor'
+
+- content_for :js do
+  = javascript_include_tag 'editor'
