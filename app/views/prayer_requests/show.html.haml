@@ -23,7 +23,7 @@
 .page-controls
   - if @prayer_request.prayers.any?
     - @prayer_request.prayers.each do |prayer|
-      = prayer.comment
+      = prayer.comment.html_safe
       %small
         =prayer.person.name
       %hr
